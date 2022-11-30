@@ -13,11 +13,11 @@ int GameLoop::Loop(std::vector<GameObject*> Objects) {
 		//render objects
 
 		struct XYZ newRot;
-		newRot.X = Objects[0]->GetPosition().X + 0.001f;
-		newRot.Y = Objects[0]->GetPosition().Y + 0.001f;
-		newRot.Z = Objects[0]->GetPosition().Z + 0.001f;
+		newRot.X = Objects[0]->GetRotation().X + 0.0f;
+		newRot.Y = Objects[0]->GetRotation().Y + 0.5f;
+		newRot.Z = Objects[0]->GetRotation().Z + 0.0f;
 		std::cout << newRot.X << std::endl;
-		Objects[0]->SetPosition(newRot);
+		Objects[0]->SetRotation(newRot);
 		render.RenderFrame(Objects);
 		
 		//execute logic

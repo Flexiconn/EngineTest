@@ -47,9 +47,9 @@ void GameObject::setVals() {
     object2.X = 0.0f;
     object2.Y = 0.0f;
     object2.Z = 0.0f;
-    object3.X = 1.0f;
-    object3.Y = 1.0f;
-    object3.Z = 1.0f;
+    object3.X = 0.0f;
+    object3.Y = 0.0f;
+    object3.Z = 0.0f;
     SetScale(object1);
     SetPosition(object2);
     SetRotation(object3);

@@ -204,9 +204,15 @@ void Render::RenderFrame(std::vector<GameObject*> objects)
             // calculate the model matrix for each object and pass it to shader before drawing
             glm::mat4 model = glm::scale( glm::mat4(1.0f), glm::vec3(scale.X, scale.Y, scale.Z));
             model = glm::translate(model, glm::vec3(pos.X, pos.Y, pos.Z));
-            //if (rot.X != 0.0f || rot.Y != 0.0f || rot.Z != 0.0f) {
-                model = glm::rotate(model, glm::radians(90.0f), glm::vec3(rot.X, rot.Y, rot.Z));
-            //}
+            if (rot.X != 0.0f) {
+                model = glm::rotate(model, glm::radians(rot.X), glm::vec3(1.0f, 0, 0));
+            }
+            if (rot.Y != 0.0f) {
+                model = glm::rotate(model, glm::radians(rot.Y), glm::vec3(0, 1.0f, 0));
+            }
+            if (rot.Z != 0.0f) {
+                model = glm::rotate(model, glm::radians(rot.Z), glm::vec3(0, 0, 1.0f));
+            }
             ourShader->setMat4("model", model);
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
