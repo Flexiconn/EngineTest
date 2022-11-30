@@ -5,8 +5,8 @@ class GameObject
 {
 public:
 	GameObject();
-	void Start();
-	void Update();
+	virtual void Start();
+	virtual void Update();
 	void SetPosition(XYZ _position);
 	void SetRotation(XYZ _rotation);
 	void SetScale(XYZ _scale);
