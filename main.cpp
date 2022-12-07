@@ -1,7 +1,10 @@
 #include "GameLoop.h"
-int main() {
-	GameLoop gameLoop;
-	std::vector<GameObject*> objs;
+#include "TestObject.h"
+#include "Scene.h"
 
-	gameLoop.Loop(objs);
+int main(){
+	Scene scene;
+	scene.Add(new TestObject());
+	GameLoop gameLoop;
+	gameLoop.Loop(scene);
 }

@@ -159,8 +159,10 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="ImageToVertexArray.cpp" />
+    <ClCompile Include="KeyLogging.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="render.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TestObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +173,9 @@
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ImageToVertexArray.h" />
+    <ClInclude Include="KeyLogging.h" />
     <ClInclude Include="Render.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="TestObject.h" />

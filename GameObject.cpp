@@ -38,6 +38,12 @@ XYZ GameObject::GetScale() {
 }
 
 void GameObject::setVals() {
+
+}
+
+
+GameObject::GameObject()
+{
     struct XYZ object1;
     struct XYZ object2;
     struct XYZ object3;
@@ -53,12 +59,6 @@ void GameObject::setVals() {
     SetScale(object1);
     SetPosition(object2);
     SetRotation(object3);
-}
-
-
-GameObject::GameObject()
-{
-
 }
 
 GameObject::~GameObject()

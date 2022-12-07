@@ -1,13 +1,5 @@
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include <iostream>
 #include "Shader.h"
 
 #define STB_IMAGE_IMPLEMENTATION    
@@ -71,25 +63,10 @@ unsigned int texture1;
  Shader* ourShader;
 
 
-void  Render::SetUp() {
+void  Render::SetUp(GLFWwindow* newWindow) {
     // glfw: initialize and configure
    // ------------------------------
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-
-    // glfw window creation
-    // --------------------
-    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
-    if (window == NULL)
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return;
-    }
-    glfwMakeContextCurrent(window);
+    window = newWindow;
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     // glad: load all OpenGL function pointers
@@ -119,7 +96,7 @@ void  Render::SetUp() {
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 
     // position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
@@ -205,13 +182,13 @@ void Render::RenderFrame(std::vector<GameObject*> objects)
             glm::mat4 model = glm::scale( glm::mat4(1.0f), glm::vec3(scale.X, scale.Y, scale.Z));
             model = glm::translate(model, glm::vec3(pos.X, pos.Y, pos.Z));
             if (rot.X != 0.0f) {
-                model = glm::rotate(model, glm::radians(rot.X), glm::vec3(1.0f, 0, 0));
+                model = glm::rotate(model, glm::radians(rot.X), glm::vec3(0.1f, 0, 0));
             }
             if (rot.Y != 0.0f) {
-                model = glm::rotate(model, glm::radians(rot.Y), glm::vec3(0, 1.0f, 0));
+                model = glm::rotate(model, glm::radians(rot.Y), glm::vec3(0, 0.1f, 0));
             }
             if (rot.Z != 0.0f) {
-                model = glm::rotate(model, glm::radians(rot.Z), glm::vec3(0, 0, 1.0f));
+                model = glm::rotate(model, glm::radians(rot.Z), glm::vec3(0, 0, 0.1f));
             }
             ourShader->setMat4("model", model);
 

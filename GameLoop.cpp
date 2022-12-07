@@ -2,30 +2,41 @@
 #include <iostream>
 #include "Render.h"
 #include "TestObject.h"
+#include <GLFW/glfw3.h>
+#include "KeyLogging.h"
 
-int GameLoop::Loop(std::vector<GameObject*> Objects) {
-	Render render;
-	Objects.push_back(new TestObject());
-	Objects.push_back(new TestObject());
-	Objects[0]->setVals();
-	Objects[1]->setVals();
-	render.SetUp();
+int GameLoop::Loop(Scene scene) {
+	Render render; 
+    GLFWwindow* window;
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+
+    // glfw window creation
+    // --------------------
+    window = glfwCreateWindow(800, 600, "2T3 Engine", NULL, NULL);
+    if (window == NULL)
+    {
+        std::cout << "Failed to create GLFW window" << std::endl;
+        glfwTerminate();
+        return -1;
+    }
+    glfwMakeContextCurrent(window);
+
+	KeyLogging* p1 = KeyLogging::getInstance();
+	p1->setWindow(window);
+
+	render.SetUp(window);
 	while (true) {
 		
+		//execute logic
+		for (auto& object : scene.GetGameObjects()) {
+			object->Update();
+		}
 		//render objects
-
-		//struct XYZ newRot, newRot2;
-		//newRot.X = Objects[0]->GetRotation().X + 0.0f;
-		//newRot.Y = Objects[0]->GetRotation().Y + 0.1f;
-		//newRot.Z = Objects[0]->GetRotation().Z + 0.0f;
-		//Objects[0]->SetRotation(newRot);
-		//newRot2.X = Objects[1]->GetRotation().X + 0.1f;
-		//newRot2.Y = Objects[1]->GetRotation().Y + 0.0f;
-		//newRot2.Z = Objects[1]->GetRotation().Z + 0.0f;
-		//std::cout << newRot2.X << std::endl;
-		//Objects[1]->SetRotation(newRot2);
-		Objects[0]->Update();
-		render.RenderFrame(Objects);
+		render.RenderFrame(scene.GetGameObjects());
 		
 		//execute logic
 		
