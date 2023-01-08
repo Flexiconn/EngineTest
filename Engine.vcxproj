@@ -158,6 +158,8 @@
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="ImageHandler.cpp" />
+    <ClCompile Include="ImageHandler.h" />
     <ClCompile Include="ImageToVertexArray.cpp" />
     <ClCompile Include="KeyLogging.cpp" />
     <ClCompile Include="main.cpp" />
